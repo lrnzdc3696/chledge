@@ -29,21 +29,18 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          backgroundColor: Colors.white,
-          title: const Center(child: Text("OwO"))),
       body: Center(child: _widgetOptions[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedItemColor: Colors.redAccent,
-        unselectedItemColor: Colors.white,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // type: BottomNavigationBarType.fixed,  // To stop icons from moving
-        items: [
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor:
+            Theme.of(context).colorScheme.onSurface.withAlpha(153),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        type: BottomNavigationBarType.fixed, // To stop icons from moving
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.event_note), label: "Logs"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Overview"),
           BottomNavigationBarItem(
@@ -52,6 +49,23 @@ class _BottomBarState extends State<BottomBar> {
               icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
+      floatingActionButton: Padding(
+        padding:
+            const EdgeInsets.only(right: 30), // Adjust left padding as needed
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+            onPressed: () {
+              // Add your logic here for adding a new item
+              print("Add button pressed");
+              // You can navigate to a new screen or show a dialog here
+            },
+            child: const Icon(Icons.add),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.startFloat, // Position the button
     );
   }
 }
